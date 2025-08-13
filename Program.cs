@@ -140,6 +140,7 @@ namespace ProjectOpgaveListe
             else if (job == null)
             {
                 Console.WriteLine($"No job found with id {id}. ");
+                Console.WriteLine("Hej");
             }
             else if (job != null && job.IsCompleted == true)
             {
