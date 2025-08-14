@@ -34,7 +34,8 @@ namespace ProjectOpgaveListe
                 Console.WriteLine("[X] Close program");
                 Console.WriteLine("[1] Add To-Do job");
                 Console.WriteLine("[2] View Jobs");
-                Console.WriteLine("[3] Complete jobs");
+                Console.WriteLine("[3] View Completed Jobs");
+                Console.WriteLine("[4] Complete jobs");
 
                 string choice = Console.ReadLine()!.ToUpper();
 
@@ -49,6 +50,9 @@ namespace ProjectOpgaveListe
                         ViewJobs();
                         break;
                     case "3":
+                        ViewCompletedJobs();
+                        break;
+                    case "4":
                         CompleteJob();
                         break;
                     default: break;
@@ -96,6 +100,29 @@ namespace ProjectOpgaveListe
                 Console.WriteLine($"Id: {job.Id}");
                 Console.WriteLine($"Name: {job.Name}");
                 Console.WriteLine($"Description: {job.Description}");
+                Console.WriteLine($"Completed: {job.IsCompleted}");
+                Console.WriteLine($"Created: {job.CreatedDate}");
+                Console.WriteLine("----------------------------------------------------");
+            }
+            Console.ReadLine();
+            Console.Clear();
+        }
+        public static void ViewCompletedJobs()
+        {
+            Console.Clear();
+            List<Job> completedJobs = jobs.Where(j => j.IsCompleted == true).ToList();
+            if (completedJobs.Count == 0)
+            {
+                Console.WriteLine("No jobs found.");
+                Console.ReadKey();
+                return;
+            }
+            foreach (Job job in completedJobs)
+            {
+                Console.WriteLine($"Id: {job.Id}");
+                Console.WriteLine($"Name: {job.Name}");
+                Console.WriteLine($"Description: {job.Description}");
+                Console.WriteLine($"Completed: {job.IsCompleted}");
                 Console.WriteLine($"Created: {job.CreatedDate}");
                 Console.WriteLine("----------------------------------------------------");
             }
